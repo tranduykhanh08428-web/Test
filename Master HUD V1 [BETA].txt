@@ -3744,9 +3744,13 @@ local v466 = vu32:MakeWindow({
 })
 
 v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://89420634817731", BackgroundTransparency = 0 },
-    Size = UDim2.new(0, 35, 0, 35),
-    Corner = { CornerRadius = UDim.new(0.25, 0) },
+    Button = { 
+        Image = "rbxassetid://70882089814444", 
+        BackgroundTransparency = 1,
+        ImageColor3 = Color3.fromRGB(255, 255, 255)
+    },
+    Size = UDim2.new(0, 45, 0, 45),
+    Corner = { CornerRadius = UDim.new(0.5, 0) },
 })
 local v485 = v466:MakeTab({"Auto Farm", "home"})
 local v487 = v466:MakeTab({"Quest | Items", "swords"})
@@ -8858,26 +8862,6 @@ spawn(function()
         end)
     end
 end)
-local LegendarySword = v499:AddParagraph({
-    Title = "Legendary Sword",
-    Desc = "Status: "
-})
-spawn(function()
-    pcall(function()
-        while wait() do
-            local rs = game:GetService("ReplicatedStorage").Remotes.CommF_   
-            if rs:InvokeServer("LegendarySwordDealer", "1") then
-                LegendarySword:SetDesc("Shisui")
-            elseif rs:InvokeServer("LegendarySwordDealer", "2") then
-                LegendarySword:SetDesc("Wando")
-            elseif rs:InvokeServer("LegendarySwordDealer", "3") then
-                LegendarySword:SetDesc("Saddi")
-            else
-                LegendarySword:SetDesc("Not Found Legend Swords")
-            end
-        end
-    end)
-end)
 local Bone = v499:AddParagraph({
     Title = "Bone",
     Desc = ""
@@ -8947,7 +8931,7 @@ end
 v497:AddSlider({
     Name = "Points Amount",
     Min = 1,
-    Max = 500,
+    Max = 400,
     Increase = 1,
     Default = 1,
     Callback = function(v)
@@ -9195,7 +9179,7 @@ end
 v494:AddSlider({
 	Name = "ESP Size",
 	Min = 10,
-	Max = 40,
+	Max = 30,
 	Default = _G.ESPSize,
 	Callback = function(Value)
 		_G.ESPSize = Value
@@ -9848,19 +9832,19 @@ v495:AddButton({
 })
 local _ = v495:AddSection({"Buy Haki,Soru..."})
 v495:AddButton({
-    Title = "Buy Geppo $10,000",
+    Title = "Buy Geppo",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
     end
 })
 v495:AddButton({
-    Title = "Buy Buso Haki $25,000",
+    Title = "Buy Buso Haki",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
     end
 })
 v495:AddButton({
-    Title = "Buy Soru $25,000",
+    Title = "Buy Soru",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
     end
@@ -9873,31 +9857,31 @@ v495:AddButton({
 })
 local _ = v495:AddSection({"Buy Sword,Gun"})
 v495:AddButton({
-    Title = "Buy Cutlass $1,000",
+    Title = "Buy Cutlass",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cutlass")
     end
 })
 v495:AddButton({
-    Title = "Buy Katana $1,000",
+    Title = "Buy Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Katana")
     end
 })
 v495:AddButton({
-    Title = "Buy Iron Mace $25,000",
+    Title = "Buy Iron Mace",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Iron Mace")
     end
 })
 v495:AddButton({
-    Title = "Buy Dual Katana $12,000",
+    Title = "Buy Dual Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Duel Katana")
     end
 })
 v495:AddButton({
-    Title = "Buy Triple Katana $60,000",
+    Title = "Buy Triple Katana",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Triple Katana")
     end
@@ -9909,68 +9893,68 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Dual-Headed Blade $400,000",
+    Title = "Buy Dual-Headed Blade",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Dual-Headed Blade")
     end
 })
 v495:AddButton({
-    Title = "Buy Bisento $1,200,000",
+    Title = "Buy Bisento",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Bisento")
     end
 })
 v495:AddButton({
-    Title = "Buy Soul Cane $750,000",
+    Title = "Buy Soul Cane",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Soul Cane")
     end
 })
 v495:AddButton({
-    Title = "Buy Pole V2 5,000F",
+    Title = "Buy Pole V2",
     Callback = function()
         game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
     end
 })
 v495:AddButton({
-    Title = "Buy Slingshot $5,000",
+    Title = "Buy Slingshot",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Slingshot")
     end
 })
 v495:AddButton({
-    Title = "Buy Musket $8,000",
+    Title = "Buy Musket",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Musket")
     end
 })
 v495:AddButton({
-    Title = "Buy Flintlock $10,500",
+    Title = "Buy Flintlock",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Flintlock")
     end
 })
 v495:AddButton({
-    Title = "Refined Slingshot $30,000",
+    Title = "Refined Slingshot",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Refined Flintlock")
     end
 })
 v495:AddButton({
-    Title = "Buy Refined Flintlock $65,000",
+    Title = "Buy Refined Flintlock",
     Callback = function()
         local v1157 = {[1] = "BuyItem", [2] = "Refined Flintlock"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1157))
     end
 })
 v495:AddButton({
-    Title = "Buy Cannon $100,000",
+    Title = "Buy Cannon",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cannon")
     end
 })
 v495:AddButton({
-    Title = "Buy Kabucha 1,500F",
+    Title = "Buy Kabucha",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "2")
@@ -9983,21 +9967,21 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Black Cape $50,000",
+    Title = "Buy Black Cape",
     Callback = function()
         local v1158 = {[1] = "BuyItem", [2] = "Black Cape"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1158))
     end
 })
 v495:AddButton({
-    Title = "Swordsman Hat $150,000",
+    Title = "Swordsman Hat",
     Callback = function()
         local v1159 = {[1] = "BuyItem", [2] = "Swordsman Hat"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1159))
     end
 })
 v495:AddButton({
-    Title = "Buy Tomoe Ring $500,000",
+    Title = "Buy Tomoe Ring",
     Callback = function()
         local v1160 = {[1] = "BuyItem", [2] = "Tomoe Ring"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1160))
@@ -10021,14 +10005,14 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Reset Stats 2,500F",
+    Title = "Reset Stats",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "2")
     end
 })
 v495:AddButton({
-    Title = "Random Race 3,000F",
+    Title = "Random Race",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "2")
@@ -10320,7 +10304,7 @@ v496:AddSlider({
 v496:AddSlider({
 	Title = "Jump",
 	Min = 50,
-	Max = 500,
+	Max = 300,
 	Default = getgenv().JumpValue,
 	Callback = function(v1139)
 		getgenv().JumpValue = v1139
@@ -10607,27 +10591,6 @@ v496:AddButton({
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1209))
         game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
     end
-})
-
-v496:AddButton({
-	Name = "FPS Boost",
-	Callback = function()
-		for _, v in ipairs(game:GetDescendants()) do
-			if v:IsA("BasePart") then
-				v.Material = Enum.Material.SmoothPlastic
-				v.Reflectance = 0
-			elseif v:IsA("Decal") or v:IsA("Texture") then
-				v:Destroy()
-			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-				v.Enabled = false
-			elseif v:IsA("Lighting") then
-				v.GlobalShadows = false
-				v.FogEnd = 1e10
-				v.Brightness = 0
-			end
-		end
-		setfpscap(60)
-	end
 })
 
 local v1218 = {
