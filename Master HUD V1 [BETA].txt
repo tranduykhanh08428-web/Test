@@ -6542,9 +6542,9 @@ if World3 then
                 end
             end
         end)
-        local EliteHunter = v499:AddParagraph({
+        local EliteHunter = v487:AddParagraph({
     Title = "Elite Hunter",
-    Desc = "Status: Checking..."
+    Desc = "Status: "
 })
 
 spawn(function()
@@ -6558,9 +6558,11 @@ spawn(function()
                               ws:FindFirstChild("Diablo") or ws:FindFirstChild("Deandre") or ws:FindFirstChild("Urban")
 
             if isSpawned then
-                EliteHunter:SetDesc("Status: ✅ Spawned | Killed: " .. progress)
+                -- Chỉ giữ lại Status, Icon và Số lượng
+                EliteHunter:SetDesc("Status: ✅ | " .. tostring(progress))
             else
-                EliteHunter:SetDesc("Status: ❌ Not Spawned | Killed: " .. progress)
+                -- Chỉ giữ lại Status, Icon và Số lượng
+                EliteHunter:SetDesc("Status: ❌ | " .. tostring(progress))
             end
         end)
     end
