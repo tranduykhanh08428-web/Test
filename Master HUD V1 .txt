@@ -7462,137 +7462,6 @@ end)
 
 local _ = v489:AddSection({"Volcanic Island"})
 v489:AddButton({
-    Title = "Tween Dragon Dojo",
-    Value = false,
-    Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(5661.53, 1013.09, -334.96))
-        topos(CFrame.new(5841.29, 1208.32, 884.31))
-    end
-})
-v489:AddToggle({
-    Name = "Auto Dragon Huntery",
-    Description = "",
-    Default = false,
-    Callback = function(v822)
-        _G.FarmBlazeEM = v822
-        StopTween(_G.FarmBlazeEM)
-    end
-})
-function checkQuesta()
-    local v823 = {[1] = {Context = "Check"}}
-    local v824 = nil
-    pcall(function()
-        local v825 = {[1] = {Context = "RequestQuest"}}
-        game:GetService("ReplicatedStorage").Modules.Net["RF/DragonHunter"]:InvokeServer(unpack(v825))
-    end)
-    local _, _ = pcall(function()
-        v824 = game:GetService("ReplicatedStorage").Modules.Net["RF/DragonHunter"]:InvokeServer(unpack(v823))
-    end)
-    local v828 = false
-    local v829 = nil
-    local v830 = nil
-    local v831 = nil
-    if v824 and v824.Text then
-        v828 = true
-        local l_Text_1 = v824.Text
-        if string.find(l_Text_1, "Defeat") then
-            v831 = 1
-            v830 = tonumber(string.sub(l_Text_1, 8, 9))
-            for _, v834 in pairs({"Hydra Enforcer", "Venomous Assailant"}) do
-                if string.find(l_Text_1, v834) then
-                    v829 = v834
-                    break
-                end
-            end
-        elseif string.find(l_Text_1, "Destroy") then
-            v831 = 2
-            v830 = 10
-        end
-    end
-    return v828, v829, v830, v831
-end
-function BackTODoJo()
-    for _, v836 in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Notifications:GetChildren()) do
-        if v836.Name == "NotificationTemplate" and string.find(v836.Text, "Head back to the Dojo to complete more tasks") then
-            return true
-        end
-    end
-    return false
-end
-function DragonMobClear(v837, v838, v839)
-    if not workspace.Enemies:FindFirstChild(v838) then
-        if v839 then
-            topos(v839)
-        end
-    else
-        for _, v841 in pairs(workspace.Enemies:GetChildren()) do
-            if v841.Name == v838 and Attack.Alive(v841) and v837 then
-                Attack.Kill(v841, v837)
-            end
-        end
-    end
-end
-spawn(function()
-    while task.wait() do
-        if _G.FarmBlazeEM then
-            pcall(function()
-                local v842, v843, _, v845 = checkQuesta()
-                if not v842 or BackTODoJo() then
-                    topos(CFrame.new(5864.88, 1209.43, 806.5))
-                    DragonMobClear(false, nil, nil)
-                elseif v845 ~= 1 then
-                    if v845 == 2 then
-                        local l_FirstChild_5 = workspace.Map.Waterfall.IslandModel:FindFirstChild("Meshes/bambootree", true)
-                        do
-                            local l_l_FirstChild_5_0 = l_FirstChild_5
-                            if l_l_FirstChild_5_0 then
-                                repeat
-                                    task.wait()
-                                    spawn(function()
-                                        topos(l_l_FirstChild_5_0.CFrame * CFrame.new(4, 0, 0))
-                                    end)
-                                    if (l_l_FirstChild_5_0.Position - Root.Position).Magnitude <= 200 then
-                                        MousePos = l_l_FirstChild_5_0.Position
-                                        Useskills("Melee", "Z")
-                                        Useskills("Melee", "X")
-                                        Useskills("Melee", "C")
-                                        task.wait(0.5)
-                                        Useskills("Sword", "Z")
-                                        Useskills("Sword", "X")
-                                        task.wait(0.5)
-                                        Useskills("Blox Fruit", "Z")
-                                        Useskills("Blox Fruit", "X")
-                                        Useskills("Blox Fruit", "C")
-                                        task.wait(0.5)
-                                        Useskills("Gun", "Z")
-                                        Useskills("Gun", "X")
-                                    end
-                                until not _G.FarmBlazeEM or not v842 or BackTODoJo()
-                            end
-                        end
-                    end
-                elseif v843 == "Hydra Enforcer" or v843 == "Venomous Assailant" then
-                    repeat
-                        task.wait()
-                        DragonMobClear(true, v843, CFrame.new(4620.61, 1002.29, 399.08))
-                    until not _G.FarmBlazeEM or not v842 or BackTODoJo()
-                end
-            end)
-        end
-    end
-end)
-spawn(function()
-    while task.wait(0.1) do
-        if _G.FarmBlazeEM then
-            pcall(function()
-                if workspace:FindFirstChild("EmberTemplate") and workspace.EmberTemplate:FindFirstChild("Part") then
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.EmberTemplate.Part.CFrame
-                end
-            end)
-        end
-    end
-end)
-v489:AddButton({
     Title = "Craft Volcanic Magnet",
     Value = false,
     Callback = function()
@@ -7600,18 +7469,6 @@ v489:AddButton({
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v849))
     end
 })
-local v850 = v489:AddParagraph({Title = "Check Prehistoric Island", Content = "Loading..."})
-task.spawn(function()
-    while task.wait(1) do
-        pcall(function()
-            if game:GetService("Workspace").Map:FindFirstChild("PrehistoricIsland") then
-                v850:Set("Prehistoric Island Spawning    ")
-            else
-                v850:Set("Prehistoric Island Not Spawn    ")
-            end
-        end)
-    end
-end)
 v489:AddToggle({
     Name = "Auto Find Prehistoric",
     Description = "",
@@ -7858,6 +7715,187 @@ spawn(function()
         end
     end
 end)
+v489:AddToggle({
+    Name = "Auto Collect Bone",
+    Description = "",
+    Default = false,
+    Callback = function(v934)
+        _G.AutoCollectBone = v934
+        StopTween(_G.AutoCollectBone)
+    end
+})
+spawn(function()
+    while wait() do
+        if _G.AutoCollectBone then
+            for _, v936 in pairs(workspace:GetDescendants()) do
+                if v936:IsA("BasePart") and v936.Name == "DinoBone" then
+                    topos(CFrame.new(v936.Position))
+                end
+            end
+        end
+    end
+end)
+v489:AddToggle({
+    Name = "Auto Collect Egg",
+    Description = "",
+    Default = false,
+    Callback = function(v937)
+        _G.CollectEgg = v937
+        StopTween(_G.CollectEgg)
+    end
+})
+spawn(function()
+    while wait() do
+        if _G.CollectEgg then
+            pcall(function()
+                game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Net"):WaitForChild("RE/CollectedDragonEgg"):FireServer()
+            end)
+        end
+    end
+end)
+v489:AddButton({
+    Title = "Tween Dragon Dojo",
+    Value = false,
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(5661.53, 1013.09, -334.96))
+        topos(CFrame.new(5841.29, 1208.32, 884.31))
+    end
+})
+v489:AddToggle({
+    Name = "Auto Dragon Huntery",
+    Description = "",
+    Default = false,
+    Callback = function(v822)
+        _G.FarmBlazeEM = v822
+        StopTween(_G.FarmBlazeEM)
+    end
+})
+function checkQuesta()
+    local v823 = {[1] = {Context = "Check"}}
+    local v824 = nil
+    pcall(function()
+        local v825 = {[1] = {Context = "RequestQuest"}}
+        game:GetService("ReplicatedStorage").Modules.Net["RF/DragonHunter"]:InvokeServer(unpack(v825))
+    end)
+    local _, _ = pcall(function()
+        v824 = game:GetService("ReplicatedStorage").Modules.Net["RF/DragonHunter"]:InvokeServer(unpack(v823))
+    end)
+    local v828 = false
+    local v829 = nil
+    local v830 = nil
+    local v831 = nil
+    if v824 and v824.Text then
+        v828 = true
+        local l_Text_1 = v824.Text
+        if string.find(l_Text_1, "Defeat") then
+            v831 = 1
+            v830 = tonumber(string.sub(l_Text_1, 8, 9))
+            for _, v834 in pairs({"Hydra Enforcer", "Venomous Assailant"}) do
+                if string.find(l_Text_1, v834) then
+                    v829 = v834
+                    break
+                end
+            end
+        elseif string.find(l_Text_1, "Destroy") then
+            v831 = 2
+            v830 = 10
+        end
+    end
+    return v828, v829, v830, v831
+end
+function BackTODoJo()
+    for _, v836 in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Notifications:GetChildren()) do
+        if v836.Name == "NotificationTemplate" and string.find(v836.Text, "Head back to the Dojo to complete more tasks") then
+            return true
+        end
+    end
+    return false
+end
+function DragonMobClear(v837, v838, v839)
+    if not workspace.Enemies:FindFirstChild(v838) then
+        if v839 then
+            topos(v839)
+        end
+    else
+        for _, v841 in pairs(workspace.Enemies:GetChildren()) do
+            if v841.Name == v838 and Attack.Alive(v841) and v837 then
+                Attack.Kill(v841, v837)
+            end
+        end
+    end
+end
+spawn(function()
+    while task.wait() do
+        if _G.FarmBlazeEM then
+            pcall(function()
+                local v842, v843, _, v845 = checkQuesta()
+                if not v842 or BackTODoJo() then
+                    topos(CFrame.new(5864.88, 1209.43, 806.5))
+                    DragonMobClear(false, nil, nil)
+                elseif v845 ~= 1 then
+                    if v845 == 2 then
+                        local l_FirstChild_5 = workspace.Map.Waterfall.IslandModel:FindFirstChild("Meshes/bambootree", true)
+                        do
+                            local l_l_FirstChild_5_0 = l_FirstChild_5
+                            if l_l_FirstChild_5_0 then
+                                repeat
+                                    task.wait()
+                                    spawn(function()
+                                        topos(l_l_FirstChild_5_0.CFrame * CFrame.new(4, 0, 0))
+                                    end)
+                                    if (l_l_FirstChild_5_0.Position - Root.Position).Magnitude <= 200 then
+                                        MousePos = l_l_FirstChild_5_0.Position
+                                        Useskills("Melee", "Z")
+                                        Useskills("Melee", "X")
+                                        Useskills("Melee", "C")
+                                        task.wait(0.5)
+                                        Useskills("Sword", "Z")
+                                        Useskills("Sword", "X")
+                                        task.wait(0.5)
+                                        Useskills("Blox Fruit", "Z")
+                                        Useskills("Blox Fruit", "X")
+                                        Useskills("Blox Fruit", "C")
+                                        task.wait(0.5)
+                                        Useskills("Gun", "Z")
+                                        Useskills("Gun", "X")
+                                    end
+                                until not _G.FarmBlazeEM or not v842 or BackTODoJo()
+                            end
+                        end
+                    end
+                elseif v843 == "Hydra Enforcer" or v843 == "Venomous Assailant" then
+                    repeat
+                        task.wait()
+                        DragonMobClear(true, v843, CFrame.new(4620.61, 1002.29, 399.08))
+                    until not _G.FarmBlazeEM or not v842 or BackTODoJo()
+                end
+            end)
+        end
+    end
+end)
+spawn(function()
+    while task.wait(0.1) do
+        if _G.FarmBlazeEM then
+            pcall(function()
+                if workspace:FindFirstChild("EmberTemplate") and workspace.EmberTemplate:FindFirstChild("Part") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.EmberTemplate.Part.CFrame
+                end
+            end)
+        end
+    end
+end)
+local v850 = v489:AddParagraph({Title = "Check Prehistoric Island", Content = "Loading..."})
+task.spawn(function()
+    while task.wait(1) do
+        pcall(function()
+            if game:GetService("Workspace").Map:FindFirstChild("PrehistoricIsland") then
+                v850:Set("Prehistoric Island Spawning    ")
+            else
+                v850:Set("Prehistoric Island Not Spawn    ")
+            end
+        end)
+    end
+end)
 local _ = v489:AddSection({"Auto Skill"})
 v489:AddToggle({
     Name = "Auto Use Melee",
@@ -7964,45 +8002,6 @@ spawn(function()
             end
         end
     end)
-end)
-local _ = v489:AddSection({"Auto Collect Bone,Egg"})
-v489:AddToggle({
-    Name = "Auto Collect Bone",
-    Description = "",
-    Default = false,
-    Callback = function(v934)
-        _G.AutoCollectBone = v934
-        StopTween(_G.AutoCollectBone)
-    end
-})
-spawn(function()
-    while wait() do
-        if _G.AutoCollectBone then
-            for _, v936 in pairs(workspace:GetDescendants()) do
-                if v936:IsA("BasePart") and v936.Name == "DinoBone" then
-                    topos(CFrame.new(v936.Position))
-                end
-            end
-        end
-    end
-end)
-v489:AddToggle({
-    Name = "Auto Collect Egg",
-    Description = "",
-    Default = false,
-    Callback = function(v937)
-        _G.CollectEgg = v937
-        StopTween(_G.CollectEgg)
-    end
-})
-spawn(function()
-    while wait() do
-        if _G.CollectEgg then
-            pcall(function()
-                game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Net"):WaitForChild("RE/CollectedDragonEgg"):FireServer()
-            end)
-        end
-    end
 end)
 local _ = v489:AddSection({"Kitsune Island"})
 local v939 = v489:AddParagraph({Title = "Check Kitsune Island", Content = "Loading..."})
