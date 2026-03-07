@@ -3793,7 +3793,7 @@ local v493 = v466:MakeTab({"Teleport", "locate"})
 local v499 = v466:MakeTab({"Status", "Scroll"})
 local v494 = v466:MakeTab({"Visual", "user"})
 local v495 = v466:MakeTab({"Shop", "shoppingCart"})
-local v496 = v466:MakeTab({"Misc", "settings"})
+local v496 = v466:MakeTab({"Misc", "settings"}) 
 _G.SelectWeapon = "Melee"
 task.spawn(function()
     while task.wait() do
@@ -4373,6 +4373,21 @@ task.spawn(function()
         end)
     end
 end)
+local TyrantStatus = v485:AddParagraph({
+    Title = "Tyrant of the Skies",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game:GetService("Workspace").Enemies:FindFirstChild("Tyrant of the Skies") then
+                TyrantStatus:SetDesc("Status : ✅️")
+            else
+                TyrantStatus:SetDesc("Status : ❌️")
+            end
+        end
+    end)
+end)
 v485:AddToggle({
     Name = "Auto Farm Tyrant",
     Description = "",
@@ -4802,6 +4817,22 @@ task.spawn(function()
                 end
             else
                 v606:Set("Killed : " .. string.sub(v607, 39, 40) .. " / 500")
+            end
+        end)
+    end
+end) 
+local CheckDoughKing = v485:AddParagraph({
+    Title = "Dough King",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage"):FindFirstChild("Dough King") 
+            or game:GetService("Workspace").Enemies:FindFirstChild("Dough King") then
+                CheckDoughKing:SetDesc("Status : ✅️")
+            else
+                CheckDoughKing:SetDesc("Status : ❌️")
             end
         end)
     end
@@ -6349,6 +6380,22 @@ end
 if World3 then
     local _ = v487:AddSection({"Quest Sea 3"})
     local _ = v487:AddSection({"Boss Rip indra"})
+    local CheckRip = v487:AddParagraph({
+    Title = "Rip_Indra",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage"):FindFirstChild("rip_indra True Form") 
+            or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
+                CheckRip:SetDesc("Status : ✅️")
+            else
+                CheckRip:SetDesc("Status : ❌️")
+            end
+        end)
+    end
+end)
     v487:AddToggle({
         Name = "Auto kill Rip Indra",
         Description = "",
@@ -8804,55 +8851,6 @@ v493:AddButton({
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end
 })
-
-
-local TyrantStatus = v499:AddParagraph({
-    Title = "Tyrant of the Skies",
-    Desc = "Status: "
-})
-spawn(function()
-    pcall(function()
-        while wait() do
-            if game:GetService("Workspace").Enemies:FindFirstChild("Tyrant of the Skies") then
-                TyrantStatus:SetDesc("Status : ✅️")
-            else
-                TyrantStatus:SetDesc("Status : ❌️")
-            end
-        end
-    end)
-end)
-local CheckRip = v499:AddParagraph({
-    Title = "Rip_Indra",
-    Desc = "Status: "
-})
-spawn(function()
-    while wait() do
-        pcall(function()
-            if game:GetService("ReplicatedStorage"):FindFirstChild("rip_indra True Form") 
-            or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
-                CheckRip:SetDesc("Status : ✅️")
-            else
-                CheckRip:SetDesc("Status : ❌️")
-            end
-        end)
-    end
-end)
-local CheckDoughKing = v499:AddParagraph({
-    Title = "Dough King",
-    Desc = "Status: "
-})
-spawn(function()
-    while wait() do
-        pcall(function()
-            if game:GetService("ReplicatedStorage"):FindFirstChild("Dough King") 
-            or game:GetService("Workspace").Enemies:FindFirstChild("Dough King") then
-                CheckDoughKing:SetDesc("Status : ✅️")
-            else
-                CheckDoughKing:SetDesc("Status : ❌️")
-            end
-        end)
-    end
-end)
 local Pullever = v499:AddParagraph({
     Title = "Pull Lever",
     Desc = "Status: "
