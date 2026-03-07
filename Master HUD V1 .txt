@@ -3739,9 +3739,9 @@ end
 local vu32 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Library-ui/refs/heads/main/redz-V5-remake/main.luau"))()
 
 local v466 = vu32:MakeWindow({
-    Title = " MASTER Hud : Blox Fruits",
+    Title = " HYSRO HUD  : Blox Fruits",
     SubTitle = "BY TRAN DUY KHANH",
-    SaveFolder = " MASTER V1"
+    SaveFolder = " HYSRO HUD"
 })
 
 v466:AddMinimizeButton({
@@ -3768,12 +3768,12 @@ for _,v in pairs(game.CoreGui:GetDescendants()) do
             stroke.Parent = v
         end
         
-        if not v:FindFirstChild("LogoM") then
+        if not v:FindFirstChild("LogoH") then
             local text = Instance.new("TextLabel")
-            text.Name = "LogoM"
+            text.Name = "LogoH"
             text.Size = UDim2.new(1,0,1,0)
             text.BackgroundTransparency = 1
-            text.Text = "M"
+            text.Text = "H"
             text.TextColor3 = Color3.fromRGB(255,255,255)
             text.TextScaled = true
             text.Font = Enum.Font.GothamBlack
@@ -10349,31 +10349,6 @@ spawn(function()
 end)
 
 v496:AddToggle({
-    Title = "Set Home Point",
-    Description = "",
-    Value = false,
-    Callback = function(v1169)
-        _G.CheckPoint = v1169
-    end
-})
-spawn(function()
-    while wait() do
-        if _G.CheckPoint then
-            game:GetService("SetSpawnPoint")
-        end
-    end
-end)
-v496:AddToggle({Title = "Infinite Soru", Value = false, Callback = function(v1170)
-    _G.AutoHaki = v1170
-end})
-spawn(function()
-    while task.wait(0.1) do
-        if _G.AutoHaki then
-            pcall(AutoHaki)
-        end
-    end
-end)
-v496:AddToggle({
     Title = "Auto Active Race V3",
     Description = "",
     Value = false,
@@ -10448,30 +10423,6 @@ spawn(function()
                         end
                     end
                 end
-            end)
-        end
-    end
-end)
-PosY = 30
-v496:AddToggle({Title = "Dodge No CD", Value = false, Callback = function(v1178)
-    DodgewithoutCool = v1178
-end})
-function NoCooldown()
-    for _, v1180 in next, getgc() do
-        if typeof(v1180) == "function" and getfenv(v1180).script == game.Players.LocalPlayer.Character:WaitForChild("Dodge") then
-            for v1181, v1182 in next, getupvalues(v1180) do
-                if tostring(v1182) == "0.4" then
-                    setupvalue(v1180, v1181, 0)
-                end
-            end
-        end
-    end
-end
-spawn(function()
-    while wait() do
-        if DodgewithoutCool then
-            pcall(function()
-                NoCooldown()
             end)
         end
     end
